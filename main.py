@@ -2,10 +2,10 @@ from flask import Flask, session
 from flask import render_template, request
 
 import sqlite3
+# ------------------------------------------------DB
 
 conn = sqlite3.connect("database.db")
 c = conn.cursor()
-
 
 CREATE_SPOTS = """Create Table spot(
   spot_name varchar,
@@ -28,25 +28,22 @@ CREATE_SHOPS="""Create Table shop(
   shop_address varchar, 
   shop_description varchar,
   borough char,
-  primary key(shop_name)
+  PRIMARY KEY(shop_name, borough)
 );"""
 
-c.execute("""INSERT or IGNORE INTO shop VALUES("Labor Skateshop", "46 Canal St, New York, NY 10002", "Description Coming Soon", "Manhattan");""")
+c.execute("""INSERT or REPLACE INTO shop VALUES("Labor Skateshop", "46 Canal St, New York, NY 10002", "Description Coming Soon", "Manhattan");""")
 
-c.execute("""INSERT or IGNORE INTO shop VALUES("Uncle Funkys Boards", "128 Charles St # Store, New York, NY 10014", "Description Coming Soon", "Manhattan");""")
+c.execute("""INSERT or REPLACE INTO shop VALUES("Uncle Funkys Boards", "128 Charles St # Store, New York, NY 10014", "Description Coming Soon", "Manhattan");""")
 
-c.execute("""INSERT or IGNORE INTO shop VALUES("Supreme", "190 Bowery, New York, NY 10012", "Description Coming Soon", "Manhattan");""")
-# Fetch the data 
-c.execute("SELECT * FROM shop")
+c.execute("""INSERT or REPLACE INTO shop VALUES("Supreme", "190 Bowery, New York, NY 10012", "Description Coming Soon", "Manhattan");""")
 
-# # Store + print the fetched data
-# result = c.fetchall()
-# for i in result:
-# 	print(i)
+c.execute("""INSERT or REPLACE INTO shop VALUES("Aegir Boardworks", "99 Water St, Brooklyn, NY 11201", "Description Coming Soon", "Brooklyn");""")
 
-conn.commit()
+c.execute("""INSERT or REPLACE INTO shop VALUES("Homage Skate Shop", "615 Degraw St, Brooklyn, NY 11217", "Description Coming Soon", "Brooklyn");""")
+
+# conn.commit()
 conn.close()
-
+# ----------------------------------------------------
 # Create a flask app
 app = Flask('app')
 
@@ -80,6 +77,8 @@ def skate_shops():
 
       c.execute("SELECT * FROM shop WHERE Borough=?",("Brooklyn",))
       b_shop_info = c.fetchall()
+      for i in b_shop_info:
+        print(i)
 
       c.execute("SELECT * FROM shop WHERE Borough=?",("Queens",))
       q_shop_info = c.fetchall()
@@ -91,7 +90,7 @@ def skate_shops():
       si_shop_info = c.fetchall()
       return render_template("skate_shops.html", m_table=m_shop_info, b_table=b_shop_info, q_table=q_shop_info, bx_table=bx_shop_info,
       si_table=si_shop_info)
-      c.close()
+      conn.close()
    
 
  # Run the Flask app
