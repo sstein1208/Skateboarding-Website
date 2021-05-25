@@ -7,41 +7,40 @@ import sqlite3
 conn = sqlite3.connect("database.db")
 c = conn.cursor()
 
-CREATE_SPOTS = """Create Table spot(
+c.execute('''Create Table IF NOT EXISTS spot(
   spot_name varchar,
   spot_address varchar, 
   spot_description varchar,
   borough char,
-  primary key(spot_name)
-);"""
+  primary key(spot_name))''')
 
-CREATE_PARKS="""Create Table park(
+c.execute('''Create Table IF NOT EXISTS park(
   park_name varchar,
   park_address varchar, 
   park_description varchar,
   borough char,
-  primary key(park_name)
-);"""
+  primary key(park_name))''')
 
-CREATE_SHOPS="""Create Table shop(
+c.execute('''Create Table IF NOT EXISTS shop(
   shop_name varchar,
   shop_address varchar, 
   shop_description varchar,
   borough char,
-  PRIMARY KEY(shop_name, borough)
-);"""
+  PRIMARY KEY(shop_name, borough))''')
 
-c.execute("""INSERT or REPLACE INTO shop VALUES("Labor Skateshop", "46 Canal St, New York, NY 10002", "Description Coming Soon", "Manhattan");""")
 
-c.execute("""INSERT or REPLACE INTO shop VALUES("Uncle Funkys Boards", "128 Charles St # Store, New York, NY 10014", "Description Coming Soon", "Manhattan");""")
+c.execute("INSERT or REPLACE INTO shop VALUES(?,?,?,?)",("Labor Skateshop", "46 Canal St, New York, NY 10002", "Description Coming Soon", "Manhattan"))
 
-c.execute("""INSERT or REPLACE INTO shop VALUES("Supreme", "190 Bowery, New York, NY 10012", "Description Coming Soon", "Manhattan");""")
+c.execute("INSERT or REPLACE INTO shop VALUES(?,?,?,?)",("Uncle Funkys Boards", "128 Charles St # Store, New York, NY 10014", "Description Coming Soon", "Manhattan"))
 
-c.execute("""INSERT or REPLACE INTO shop VALUES("Aegir Boardworks", "99 Water St, Brooklyn, NY 11201", "Description Coming Soon", "Brooklyn");""")
+c.execute("INSERT or REPLACE INTO shop VALUES (?,?,?,?)",("Supreme", "190 Bowery, New York, NY 10012", "Description Coming Soon", "Manhattan"))
 
-c.execute("""INSERT or REPLACE INTO shop VALUES("Homage Skate Shop", "615 Degraw St, Brooklyn, NY 11217", "Description Coming Soon", "Brooklyn");""")
+c.execute("INSERT or REPLACE INTO shop VALUES(?,?,?,?)",("Aegir Boardworks", "99 Water St, Brooklyn, NY 11201", "Description Coming Soon", "Brooklyn"))
 
-# conn.commit()
+c.execute("INSERT or REPLACE INTO shop VALUES(?,?,?,?)",("Homage Skate Shop", "615 Degraw St, Brooklyn, NY 11217", "Description Coming Soon", "Brooklyn"))
+
+
+conn.commit()
 conn.close()
 # ----------------------------------------------------
 # Create a flask app
