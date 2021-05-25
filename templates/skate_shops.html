@@ -61,27 +61,80 @@
 
     <div id="Manhattan" class="tabcontent">
       <h3>Manhattan Skateshops</h3>
-      
+      {% for row in m_table %}
+        <tr>
+          <td>{{row[0]}}</td>
+          <br>
+          <td>{{row[1]}}</td>
+          <br>
+          <td>{{row[2]}}</td>
+          <br>
+          <br>
+        <tr>
+      {% endfor %}
      
     </div>
 
     <div id="Brooklyn" class="tabcontent">
       <h3>Brooklyn Skateshops</h3>
-     
+      {% for row in b_table %}
+        <tr>
+          <td>{{row[0]}}</td>
+          <br>
+          <td>{{row[1]}}</td>
+          <br>
+          <td>{{row[2]}}</td>
+          <br>
+          <br>
+        <tr>
+      {% endfor %}
     </div>
 
     <div id="Queens" class="tabcontent">
       <h3>Queens Skateshops</h3>
+      {% for row in q_table %}
+        <tr>
+          <td>{{row[0]}}</td>
+          <br>
+          <td>{{row[1]}}</td>
+          <br>
+          <td>{{row[2]}}</td>
+          <br>
+          <br>
+        <tr>
+      {% endfor %}
       
     </div>
 
     <div id="Bronx" class="tabcontent">
       <h3>Bronx Skateshops</h3>
+      {% for row in bx_table %}
+        <tr>
+          <td>{{row[0]}}</td>
+          <br>
+          <td>{{row[1]}}</td>
+          <br>
+          <td>{{row[2]}}</td>
+          <br>
+          <br>
+        <tr>
+      {% endfor %}
      
     </div>
 
     <div id="Staten Island" class="tabcontent">
       <h3>Staten Island Skateshops</h3>
+      {% for row in si_table %}
+        <tr>
+          <td>{{row[0]}}</td>
+          <br>
+          <td>{{row[1]}}</td>
+          <br>
+          <td>{{row[2]}}</td>
+          <br>
+          <br>
+        <tr>
+      {% endfor %}
       
     </div>
 
