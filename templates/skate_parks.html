@@ -1,13 +1,162 @@
 <html>
   <head>
     <title>Skate Parks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {font-family: Arial;}
+
+      /* Style the tab */
+      .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+      }
+
+      /* Style the buttons inside the tab */
+      .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+      }
+
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+        background-color: #ddd;
+      }
+
+      /* Create an active/current tablink class */
+      .tab button.active {
+        background-color: #ccc;
+      }
+
+      /* Style the tab content */
+      .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+    </style>
   </head>
   <body>
     <h1>Skate Parks</h1>
     <br>
     -interactive map <br>
     -click on pins to open up info about park (location, pic)<br>
-    -also have a list below of parks
+    -also have a list below of parks<br><br>
+
+    <h2>Borough</h2>
+    <div class="tab">
+      <button class="tablinks" onclick="openBorough(event, 'Manhattan')">Manhattan</button>
+      <button class="tablinks" onclick="openBorough(event, 'Brooklyn')">Brooklyn</button>
+      <button class="tablinks" onclick="openBorough(event, 'Queens')">Queens</button>
+      <button class="tablinks" onclick="openBorough(event, 'Bronx')">Bronx</button>
+      <button class="tablinks" onclick="openBorough(event, 'Staten Island')">Staten Island</button>
+    </div>
+
+    <div id="Manhattan" class="tabcontent">
+      <h3>Manhattan Skateparks</h3>
+      {% for row in m_table %}
+        <tr>
+          <td>{{row[0]}}</td>
+          <br>
+          <td>{{row[1]}}</td>
+          <br>
+          <td>{{row[2]}}</td>
+          <br>
+          <br>
+        <tr>
+      {% endfor %}
+      {{m_empty_msg}}
+    </div>
+
+    <div id="Brooklyn" class="tabcontent">
+      <h3>Brooklyn Skateparks</h3>
+      {% for row in b_table %}
+        <tr>
+          <td>{{row[0]}}</td>
+          <br>
+          <td>{{row[1]}}</td>
+          <br>
+          <td>{{row[2]}}</td>
+          <br>
+          <br>
+        <tr>
+      {% endfor %}
+      {{b_empty_msg}}
+    </div>
+
+    <div id="Queens" class="tabcontent">
+      <h3>Queens Skateparks</h3>
+      {% for row in q_table %}
+        <tr>
+          <td>{{row[0]}}</td>
+          <br>
+          <td>{{row[1]}}</td>
+          <br>
+          <td>{{row[2]}}</td>
+          <br>
+          <br>
+        <tr>
+      {% endfor %}
+      {{q_empty_msg}}
+      
+    </div>
+
+    <div id="Bronx" class="tabcontent">
+      <h3>Bronx Skateparks</h3>
+      {% for row in bx_table %}
+        <tr>
+          <td>{{row[0]}}</td>
+          <br>
+          <td>{{row[1]}}</td>
+          <br>
+          <td>{{row[2]}}</td>
+          <br>
+          <br>
+        <tr>
+      {% endfor %}
+      {{bx_empty_msg}}
+     
+    </div>
+
+    <div id="Staten Island" class="tabcontent">
+      <h3>Staten Island Skateparks</h3>
+      {% for row in si_table %}
+        <tr>
+          <td>{{row[0]}}</td>
+          <br>
+          <td>{{row[1]}}</td>
+          <br>
+          <td>{{row[2]}}</td>
+          <br>
+          <br>
+        <tr>
+      {% endfor %}
+      {{si_empty_msg}}
+      
+    </div>
+
+    <script>
+      function openBorough(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+    </script>
     
   </body>
 </html> 
