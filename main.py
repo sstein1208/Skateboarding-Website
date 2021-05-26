@@ -94,6 +94,18 @@ conn.commit()
 
 # Staten Island
 c.execute("INSERT or REPLACE INTO shop VALUES(?,?,?,?)",("Richmond Hood Company", "827 Castleton Ave, Staten Island, NY 10310", "Description Coming Soon", "Staten Island"))
+=======
+
+c.execute("INSERT or REPLACE INTO shop VALUES(?,?,?,?)",("Labor Skateshop", "46 Canal St, New York, NY 10002", "Description Coming Soon", "Manhattan"))
+
+c.execute("INSERT or REPLACE INTO shop VALUES(?,?,?,?)",("Uncle Funkys Boards", "128 Charles St # Store, New York, NY 10014", "Description Coming Soon", "Manhattan"))
+
+c.execute("INSERT or REPLACE INTO shop VALUES (?,?,?,?)",("Supreme", "190 Bowery, New York, NY 10012", "Description Coming Soon", "Manhattan"))
+
+c.execute("INSERT or REPLACE INTO shop VALUES(?,?,?,?)",("Aegir Boardworks", "99 Water St, Brooklyn, NY 11201", "Description Coming Soon", "Brooklyn"))
+
+c.execute("INSERT or REPLACE INTO shop VALUES(?,?,?,?)",("Homage Skate Shop", "615 Degraw St, Brooklyn, NY 11217", "Description Coming Soon", "Brooklyn"))
+
 
 conn.commit()
 conn.close()
